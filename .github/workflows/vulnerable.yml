@@ -10,7 +10,9 @@ jobs:
   vulnerable:
     name: a vulnerable workflow
     runs-on: ubuntu-latest
+    env:
+      configuration: $(echo "INJECTED")
     steps:
-      - name: echo configuration ${{ inputs.configuration }}
-        run: echo Hello ${{ inputs.configuration }}
+      - name: echo configuration "${configuration}"
+        run: echo Hello "${configuration}"
 

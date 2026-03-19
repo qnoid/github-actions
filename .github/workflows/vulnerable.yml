@@ -2,17 +2,15 @@ on:
   workflow_call:
     inputs:
       configuration:
-        required: false
+        required: true 
         type: string
-        default: $(echo "INJECTED")
+        default: 'foo'
 
 jobs:
   vulnerable:
     name: a vulnerable workflow
     runs-on: ubuntu-latest
-    env:
-      configuration: $(echo "INJECTED")
     steps:
-      - name: echo configuration "${configuration}"
-        run: echo Hello "${configuration}"
+      - name: echo configuration ${{ inputs.configuration }}
+        run: echo Hello ${{ inputs.configuration }}
 

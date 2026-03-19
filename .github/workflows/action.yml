@@ -1,0 +1,14 @@
+name: foo
+
+on:
+  push:
+    branches:
+      - develop
+      - release/*
+
+jobs:
+  vulnerable_workflow_call:
+    name: a vulnerable workflow call 
+    uses: ./.github/workflows/vulnerable.yml
+    with:
+      configuration: $(echo "INJECTED")
